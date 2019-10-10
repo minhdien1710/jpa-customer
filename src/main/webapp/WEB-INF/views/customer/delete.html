@@ -2,23 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete customer</title>
+    <title th:text="#{customer.delete}"></title>
 </head>
 <body>
-<h1>Delete customer</h1>
-<h2>Are you sure?</h2>
+<h1 th:text="#{customer.delete}"></h1>
+<h2 th:text="#{global.confirm}"></h2>
 <p>
-    <a href="/customers">Customer list</a>
+    <a href="/customer/list" th:text="#{customer.list}"></a>
 </p>
 <form th:action="@{/delete-customer}" th:object="${customer}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>First name:</td>
+            <td th:text="#{customer.first_name}">:</td>
             <td th:text="${customer.firstName}"></td>
         </tr>
         <tr>
-            <td>Last name:</td>
+            <td th:text="#{customer.last_name}">:</td>
             <td th:text="${customer.lastName}"></td>
         </tr>
         <tr>

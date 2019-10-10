@@ -8,9 +8,9 @@
 <h1>Delete province</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/provinces">Province list</a>
+    <a href="/province/list">Province list</a>
 </p>
-<form th:action="@{/delete-province}" th:object="${province}" method="post">
+<form th:action="@{/province/delete}" th:object="${province}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>

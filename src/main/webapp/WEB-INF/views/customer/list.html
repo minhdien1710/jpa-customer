@@ -1,37 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{customer.list}"></title>
 </head>
 <body>
-<a href="/create-customer">Create new customer</a>
+<span th:text="#{global.language}+${': '}"></span>
+<a th:href="@{/customer/list/(lang=en)}" th:text="#{global.english}"></a>
+<a th:href="@{/customer/list/(lang=vi)}" th:text="#{global.vietnamese}"></a>
+<a href="/customer/create" th:text="#{customer.add}"></a>
 <h1>Customers</h1>
 <form>
-    Search by first name:
+    <a th:text="#{global.search}"></a>
     <input name="s" type="text"/>
     <input type="submit" value="Search"/>
 </form><br/>
 <table border="1">
     <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Province</th>
+        <th th:text="#{customer.first_name}"></th>
+        <th th:text="#{customer.last_name}"></th>
+        <th th:text="#{global.province}"></th>
     </tr>
     <th:block th:each="customer : ${customers}">
         <tr>
             <td th:text="${customer.firstName}"></td>
             <td th:text="${customer.lastName}"></td>
             <td th:text="${customer.province.name}"></td>
-            <td><a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>
+            <td><a th:href="@{/customer/edit/__${customer.id}__ }" th:text="#{global.update}"></a></td>
+            <td><a th:href="@{/customer/delete/__${customer.id}__ }" th:text="#{global.delete}"></a></td>
         </tr>
     </th:block>
 </table>
 <div>
-    <a th:href="@{'/customers'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
+    <a th:href="@{'/customer/list/'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}" th:text="#{global.previous}"></a>
     <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
-    <a th:href="@{'/customers'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+    <a th:href="@{'/customer/list/'(page=${customers.number + 1})}" th:if="${customers.hasNext()}" th:text="#{global.next}"></a>
 </div>
 </body>
 </html>

@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit customer</title>
+    <title th:text="#{customer.add}"></title>
 </head>
 <body>
-<h1>Edit customer</h1>
+<h1 th:text="#{customer.update}"></h1>
 <p>
-    <a href="/customers">Customer list</a>
+    <a href="/customer/list" th:text="#{customer.list}"></a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/edit-customer}" th:object="${customer}" method="post">
+<form th:action="@{/customer/edit}" th:object="${customer}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>
-            <td>First name:</td>
+            <td th:text="#{customer.first_name}"></td>
             <td><input type="text" th:field="*{firstName}"/></td>
         </tr>
         <tr>
-            <td>Last name:</td>
+            <td th:text="#{customer.last_name}"></td>
             <td><input type="text" th:field="*{lastName}"/></td>
         </tr>
         <tr>
-            <td>Province:</td>
+            <td th:text="#{province.name}"></td>
             <td>
                 <select name="province">
                     <option th:each="p : ${provinces}"

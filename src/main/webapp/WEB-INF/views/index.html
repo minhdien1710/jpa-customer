@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{global.home}"></title>
+</head>
+<body>
+<span th:text="#{global.language}+${': '}"></span>
+<a th:href="@{/home/(lang=en)}" th:text="#{global.english}"></a> |
+<a th:href="@{/home/(lang=vi)}" th:text="#{global.vietnamese}"></a>
+<h1><a th:href="@{/home/}" th:text="#{global.home}"></a></h1>
+<a th:href="@{/customer/list}" th:text="#{global.customer}"></a> |
+<a th:href="@{/province/list}" th:text="#{global.province}"></a>
+</body>
+</html>
